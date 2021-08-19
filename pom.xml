@@ -9,7 +9,35 @@
     <version>1.0-SNAPSHOT</version>
 
     <packaging>pom</packaging>
-    <description>学习之旅</description>
+
+    <name>学习之旅</name>
+    <description>杂七杂八搞起来</description>
+    <url>https://adragonqaq.github.io/</url>
+
+    <developers>
+        <developer>
+            <id></id>
+            <name>lzl</name>
+            <url>https://adragonqaq.github.io/</url>
+        </developer>
+    </developers>
+
+    <!--该元素描述了项目所有License列表。 应该只列出该项目的license列表，不要列出依赖项目的 license列表。如果列出多个license，用户可以选择它们中的一个而不是接受所有license。 -->
+    <licenses>
+        <!--描述了项目的license，用于生成项目的web站点的license页面，其他一些报表和validation也会用到该元素。 -->
+        <license>
+            <!--license用于法律上的名称 -->
+            <name>Apache 2</name>
+            <!--官方的license正文页面的URL -->
+            <url>http://www.baidu.com/banseon/LICENSE-2.0.txt</url>
+            <!--项目分发的主要方式： repo，可以从Maven库下载 manual， 用户必须手动下载和安装依赖 -->
+            <distribution>repo</distribution>
+            <!--关于license的补充信息 -->
+            <comments>A business-friendly OSS license</comments>
+        </license>
+    </licenses>
+
+
     <modules>
         <module>algorithm</module>
         <module>jdk8</module>
