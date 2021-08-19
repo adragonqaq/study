@@ -17,6 +17,7 @@
         <module>queue</module>
     </modules>
 
+    <!--配置参数，子类也可以用 -->
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
@@ -30,16 +31,24 @@
 
     <!--真正依赖 子可以继承 -->
     <dependencies>
+        <!--junit 测试 -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.12</version>
             <scope>test</scope>
         </dependency>
+        <!--lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.18.8</version>
+        </dependency>
+        <!--hutool jdk8对应的5 jdk7对应的版本4 -->
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>5.4.1</version>
         </dependency>
     </dependencies>
 
