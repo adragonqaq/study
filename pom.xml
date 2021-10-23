@@ -16,7 +16,7 @@
 
     <developers>
         <developer>
-            <id></id>
+            <id>adragon</id>
             <name>lzl</name>
             <url>https://adragonqaq.github.io/</url>
         </developer>
@@ -43,12 +43,16 @@
         <module>jdk8</module>
         <module>lock</module>
         <module>queue</module>
+        <module>thread</module>
+        <module>transactional</module>
+        <module>calculate</module>
     </modules>
 
     <!--配置参数，子类也可以用 -->
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
+        <checkstyle.config.location>checkStyle.xml</checkstyle.config.location> <!--这里指定了代码规范检查的规则文件，已经位置在项目根目录下-->
     </properties>
 
     <!--统一管理 但不真正依赖 -->
@@ -103,7 +107,7 @@
         </plugins>
     </build>
 
-    <!--配置不同的环境 -->
+    <!--配置不同的环境  这里面加了其他的插件，不想用可以不走dev环境-->
     <profiles>
         <profile>
             <id>dev</id>
@@ -118,13 +122,90 @@
                         <version>2.19.1</version>
                     </plugin>
                     <plugin>
+                        <!--
+                            mvn checkstyle:help           查看checkstyle-plugin的帮助：
+                            mvn checkstyle:check          检查工程是否满足checkstyle的检查，如果没有满足，检查会失败，可以通过target/site/checkstyle.html查看。
+                            mvn checkstyle:checkstyle     检查工程是否满足checkstyle的检查，如果没有满足，检查不会失败，可以通过target/site/checkstyle.html查看。
+                            mvn checkstyle:checkstyle-aggregate     检查工程是否满足checkstyle的检查，如果没有满足，检查不会失败，可以通过target/site/checkstyle.html查看。
+                            在运行完“mvn checkstyle:checkstyle”命令后，可以运行"mvn jxr:jxr"来使checkstyle的结果可以直接跳转到代码行位置
+                         -->
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-checkstyle-plugin</artifactId>
                         <version>3.1.0</version>
+                        <executions>
+                            <execution>
+                                <!--名字任意 -->
+                                <id>validate</id>
+                                <!-- 绑定到validate生命周期阶段上 -->
+                                <phase>validate</phase>
+                                <configuration>
+                                    <encoding>UTF-8</encoding>
+                                    <consoleOutput>true</consoleOutput>
+                                    <failsOnError>true</failsOnError>
+                                    <linkXRef>false</linkXRef>
+                                </configuration>
+                                <!-- 只运行.. -->
+<!--                                <goals>-->
+<!--                                    <goal>check</goal>-->
+<!--                                </goals>-->
+                                <goals>
+                                    <goal>checkstyle-aggregate</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <!-- findbugs插件 ：静态检查代码的错误
+                    mvn findbugs:help       查看findbugs插件的帮助
+                    mvn findbugs:check      检查代码是否通过findbugs检查，如果没有通过检查，检查会失败，但检查不会生成结果报表
+                    mvn findbugs:findbugs   检查代码是否通过findbugs检查，如果没有通过检查，检查不会失败，会生成结果报表保存在target/findbugsXml.xml文件中
+                    mvn findbugs:gui        检查代码并启动gui界面来查看结果
+                    -->
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>findbugs-maven-plugin</artifactId>
+                        <version>3.0.4</version>
+                        <configuration>
+                            <!-- 设置分析工作的等级，可以为Min、Default和Max -->
+                            <effort>Low</effort>
+                            <!-- Low、Medium和High (Low最严格) -->
+                            <threshold>Medium</threshold>
+                            <failOnError>true</failOnError>
+                            <includeTests>true</includeTests>
+                            <!--findbugs需要忽略的错误的配置文件-->
+                            <!--  <excludeFilterFile>compile.bat</excludeFilterFile> -->
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>run-findbugs</id>
+                                <!-- 在install 阶段触发执行findbugs检查，比如执行 mvn clean package-->
+                                <phase>install</phase>
+                                <goals>
+                                    <goal>check</goal>
+                                </goals>
+                            </execution>
+                        </executions>
                     </plugin>
                 </plugins>
             </build>
+
+            <reporting>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-checkstyle-plugin</artifactId>
+                        <version>3.1.0</version>
+<!--                        <reportSets>-->
+<!--                            <reportSet>-->
+<!--                                <reports>-->
+<!--                                    <report>checkstyle</report>-->
+<!--                                </reports>-->
+<!--                            </reportSet>-->
+<!--                        </reportSets>-->
+                    </plugin>
+                </plugins>
+            </reporting>
         </profile>
     </profiles>
+
 
 </project>

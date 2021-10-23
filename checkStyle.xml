@@ -1,0 +1,192 @@
+<?xml version="1.0"?>
+<!DOCTYPE module PUBLIC
+        "-//Checkstyle//DTD Checkstyle Configuration 1.3//EN"
+        "https://checkstyle.org/dtds/configuration_1_3.dtd">
+<module name="Checker">
+    <property name="charset" value="UTF-8"/>
+    <property name="severity" value="error"/>
+    <!--   检查文件是否以一个空行结束   -->
+    <!--      <module name="NewlineAtEndOfFile"/>  -->
+    <!--   每个java文件一个语法树   -->
+    <module name="TreeWalker">
+        <!--           import检查  -->
+        <!--  避免使用*  -->
+        <module name="AvoidStarImport"/>
+        <!--           检查是否从非法的包中导入了类   -->
+        <module name="IllegalImport"/>
+        <!--   检查是否导入了多余的包   -->
+        <module name="RedundantImport"/>
+        <!--
+                &lt;!&ndash; 没用的import检查，比如：1.没有被用到2.重复的3.import java.lang的4.import 与该类在同一个package的 &ndash;&gt;
+                 -->
+        <module name="UnusedImports"/>
+        <!--   注释检查   -->
+        <!--   检查构造函数的javadoc   -->
+        <module name="JavadocType">
+            <property name="allowUnknownTags" value="true"/>
+            <message key="javadoc.missing" value="类缺少注释。"/>
+        </module>
+        <!--   命名检查   -->
+        <!--   局部的final变量，包括catch中的参数的检查   -->
+        <module name="LocalFinalVariableName">
+            <message key="name.invalidPattern" value="final修饰的局部变量 ''{0}'' 必须统一使用 lowerCamelCase 风格，必须遵从驼峰形式"/>
+        </module>
+        <!--   局部的非final型的变量，包括catch中的参数的检查   -->
+        <module name="LocalVariableName">
+            <message key="name.invalidPattern" value="局部变量 ''{0}'' 必须统一使用 lowerCamelCase 风格，必须遵从驼峰形式"/>
+        </module>
+        <!--
+                 包名的检查（只允许小写字母），默认^[a-z]+(\.[a-zA-Z_][a-zA-Z_0-9_]*)*$
+                 -->
+        <module name="PackageName">
+            <property name="format" value="^[a-z]+(\.[a-z][a-z0-9]*)*$"/>
+            <message key="name.invalidPattern" value="包名统一使用小写"/>
+        </module>
+        <!--   仅仅是static型的变量（不包括static final型）的检查   -->
+        <module name="StaticVariableName">
+            <property name="severity" value="warning"/>
+            <property name="format" value="^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"/>
+            <property name="applyToPrivate" value="false"/>
+            <property name="applyToProtected" value="false"/>
+            <message key="name.invalidPattern" value="常量命名全部大写，单词间用下划线隔开"/>
+        </module>
+        <!--   Class或Interface名检查，默认^[A-Z][a-zA-Z0-9]*$  -->
+        <module name="TypeName">
+            <property name="format" value="^[A-Z][a-zA-Z0-9]*$"/>
+            <message key="name.invalidPattern" value="类名使用 UpperCamelCase 风格，首字母必须大写"/>
+        </module>
+        <!--   非static型变量的检查   -->
+        <module name="MemberName">
+            <property name="severity" value="error"/>
+            <property name="format" value="^[a-z0-9][a-zA-Z0-9]*$"/>
+            <message key="name.invalidPattern" value="成员变量''{0}'' 命名均不能以下划线或美元符号开始，也不能以下划线或美元符号结束且必须遵从驼峰形式"/>
+        </module>
+        <!--   方法名的检查   -->
+        <module name="MethodName">
+            <property name="format" value="^[a-z]([a-z0-9][a-zA-Z0-9]*)?$"/>
+            <message key="name.invalidPattern" value="方法名''{0}'' 必须统一使用 lowerCamelCase 风格，必须遵从驼峰形式。"/>
+        </module>
+        <!--   方法的参数名   -->
+        <module name="ParameterName">
+            <property name="format" value="^([a-z0-9][a-zA-Z0-9]*)?$"/>
+            <message key="name.invalidPattern" value="参数名''{0}'' 必须统一使用 lowerCamelCase 风格，必须遵从驼峰形式。"/>
+        </module>
+        <!--   常量名的检查（只允许大写）  -->
+        <module name="ConstantName">
+            <property name="severity" value="warning"/>
+            <property name="format" value="^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"/>
+            <property name="applyToPrivate" value="false"/>
+            <property name="applyToProtected" value="false"/>
+            <message key="name.invalidPattern" value="常量''{0}'' 命名全部大写，单词间用下划线隔开"/>
+        </module>
+        <!--   定义检查   -->
+        <!--   检查数组类型定义的样式   -->
+        <module name="ArrayTypeStyle">
+            <message key="array.type.style" value="类型与中括号紧挨相连来表示数组,如int[] arrays"/>
+        </module>
+        <module name="AbstractClassName">
+            <property name="ignoreModifier" value="true"/>
+            <property name="format" value="^Abstract.*$|^Base.*$|^(?!.*Example).*$"/>
+            <message key="illegal.abstract.class.name" value="抽象类命名使用Abstract或Base开头"/>
+            <message key="no.abstract.class.modifie" value="必须是抽象类命名"/>
+        </module>
+        <!--   检查long型定义是否有大写的“L”   -->
+        <module name="UpperEll">
+            <message key="upperEll" value="''{0}'' 定义请使用大写''L''."/>
+        </module>
+        <!--   长度检查   -->
+        <!--   每行不超过200个字符   -->
+        <module name="LineLength">
+            <property name="max" value="200"/>
+            <property name="ignorePattern" value="^package.*|^import.*|a href|href|http://|https://|ftp://"/>
+        </module>
+        <!--   方法不超过120行   -->
+        <module name="MethodLength">
+            <property name="severity" value="warning"/>
+            <property name="tokens" value="METHOD_DEF"/>
+            <property name="max" value="120"/>
+        </module>
+        <!--   空格检查  -->
+        <!--   方法名后跟左圆括号"("   -->
+        <module name="MethodParamPad"/>
+        <!--  检查在某个特定关键字之后应保留空格   -->
+        <module name="NoWhitespaceAfter"/>
+        <!--   检查在某个特定关键字之前应保留空格   -->
+        <module name="NoWhitespaceBefore"/>
+        <!--   操作符换行策略检查   -->
+        <!--  <module name="OperatorWrap"/>  -->
+        <!--   圆括号空白   -->
+        <module name="ParenPad"/>
+        <!--   检查分隔符是否在空白之后   -->
+        <module name="WhitespaceAfter"/>
+        <!--   检查分隔符周围是否有空白   -->
+        <module name="WhitespaceAround">
+            <property name="allowEmptyConstructors" value="true"/>
+            <property name="allowEmptyMethods" value="true"/>
+            <property name="allowEmptyTypes" value="true"/>
+            <property name="allowEmptyLoops" value="true"/>
+            <message key="ws.notFollowed" value="''{0}'' 后面没有空格."/>
+            <message key="ws.notPreceded" value="''{0}'' 前面没有空格."/>
+            <message key="ws.preceded" value="''{0}'' 前面不应有空格."/>
+        </module>
+        <!--   代码块检查   -->
+        <!--  检查是否存在TODO（待处理） TODO是javaIDE自动生成的。一般代码写完后要去掉。    -->
+        <module name="TodoComment"/>
+        <!--  检查是否有嵌套代码块  -->
+        <module name="AvoidNestedBlocks"/>
+        <!--           检查是否有空代码块   -->
+        <module name="EmptyBlock"/>
+        <!--           检查左大括号位置   -->
+        <module name="LeftCurly"/>
+        <!--   检查右大括号位置   -->
+        <module name="RightCurly"/>
+        <!--   检查代码块是否缺失{}   -->
+        <module name="NeedBraces"/>
+        <!--          <module name="AvoidStarImport"/>  -->
+        <module name="StringLiteralEquality">
+            <message key="string.literal.equality" value="字符串应使用equals()方法进行比较，而非''{0}''"/>
+        </module>
+        <module name="MultipleVariableDeclarations"/>
+        <!--   代码检查   -->
+        <!--   检查空的代码段   -->
+        <module name="EmptyStatement"/>
+        <!--   检查在重写了equals方法后是否重写了hashCode方法   -->
+        <module name="EqualsHashCode"/>
+        <!--   检查子表达式中是否有赋值操作   -->
+        <!--          <module name="InnerAssignment"/>  -->
+        <!--   检查switch语句是否有default   -->
+        <module name="MissingSwitchDefault"/>
+        <!--  检查switch是否缺少break、continue、return、throw  -->
+        <module name="FallThrough"/>
+        <!--  检查是否有过度复杂的布尔表达式  -->
+        <module name="SimplifyBooleanExpression"/>
+        <!--  检查是否有过于复杂的布尔返回代码段  -->
+        <module name="SimplifyBooleanReturn"/>
+        <module name="Regexp">
+            <property name="format" value="System\.out\.println"/>
+            <property name="illegalPattern" value="true"/>
+            <message key="illegal.regexp" value="禁止使用System.out.println."/>
+        </module>
+        <module name="EmptyCatchBlock">
+            <property name="exceptionVariableName" value="ignore|expected"/>
+            <property name="commentFormat" value="ignore"/>
+        </module>
+        <!--  if-else嵌套语句个数 最多5层  -->
+        <module name="NestedIfDepth">
+            <property name="max" value="4"/>
+        </module>
+        <!--  try-catch 嵌套语句个数 最多2层  -->
+        <module name="NestedTryDepth">
+            <property name="max" value="2"/>
+        </module>
+        <!--  类设计检查  -->
+        <!--  检查只有private构造函数的类是否声明为final  -->
+        <module name="FinalClass"/>
+        <!--  检查工具类是否有putblic的构造器  -->
+        <module name="HideUtilityClassConstructor"/>
+        <!--  检查接口是否仅定义类型  -->
+        <module name="InterfaceIsType"/>
+        <!--  检查是否有多余的修饰符，例如：接口中的方法不必使用public、abstract修饰   -->
+        <module name="RedundantModifier"/>
+    </module>
+</module>
