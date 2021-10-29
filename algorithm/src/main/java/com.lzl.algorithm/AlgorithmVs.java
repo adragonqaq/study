@@ -1,6 +1,7 @@
 package com.lzl.algorithm;
 
 /**
+ * 菜鸟教程：https://www.runoob.com/w3cnote/quick-sort-2.html
  * 排序 VS 参考 ：http://www.cnblogs.com/mengdd/archive/2012/11/24/2786346.html
  */
 public class AlgorithmVs {
