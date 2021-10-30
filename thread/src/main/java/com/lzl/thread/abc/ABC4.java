@@ -6,6 +6,15 @@ import java.util.concurrent.CyclicBarrier;
  * 让多线程之间按照顺序输出，那么可以考虑用锁控制对应顺序，B等待A释放锁，C等待B释放锁，我们的选择可以有CountDownLatch和CyclicBarrier，但是有循环的条件，所以应该选择可以重置的CyclicBarrier。
  * 之后的思考就是如何通过CyclicBarrier实现C执行完后再执行A。
  *
+ *
+ * CyclicBarrier 使用场景
+ * 可以用于多线程计算数据，最后合并计算结果的场景
+ *
+ * CyclicBarrier 与 CountDownLatch 区别
+ * CountDownLatch 是一次性的，CyclicBarrier 是可循环利用的
+ * CountDownLatch 参与的线程的职责是不一样的，有的在倒计时，有的在等待倒计时结束。CyclicBarrier 参与的线程职责是一样的。
+ *
+ *
  */
 public class ABC4 {
 
