@@ -46,6 +46,7 @@
         <module>thread</module>
         <module>transactional</module>
         <module>calculate</module>
+        <module>netty</module>
     </modules>
 
     <!--配置参数，子类也可以用 -->
