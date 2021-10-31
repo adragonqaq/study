@@ -26,6 +26,16 @@ min-slaves-to-write：这个配置项设置了主库能进行数据同步的最�
 
 即使原主库是假故障，它在假故障期间也无法响应哨兵心跳，也不能和从库进行同步，自然也就无法和从库进行 ACK 确认了。这样一来，min-slaves-to-write 和 min-slaves-max-lag 的组合要求就无法得到满足，原主库就会被限制接收客户端请求，客户端也就不能在原主库中写入新数据了。
 
+（旧版本）
+```shell
+min-slaves-to-write
+min-slaves-max-lag 
+```
 
+（新版本）
+```shell
+min-replicas-to-write 
+min-replicas-max-lag 
+```
 
 
