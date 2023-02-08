@@ -8,6 +8,11 @@ import java.util.List;
  * JVM 内存溢出与泄漏 概念
  * https://www.jiangguo.net/c/rd1/lyy.html
  *
+ *jdk8默认垃圾回收器_各垃圾回收器的特点及区别
+ * https://blog.csdn.net/weixin_39976153/article/details/110742013
+ *
+ *
+ *
  *
  * 参考链接
  * https://cloud.tencent.com/developer/article/1912171
