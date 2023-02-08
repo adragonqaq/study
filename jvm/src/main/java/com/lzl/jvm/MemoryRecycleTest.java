@@ -4,6 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ *
+ * JVM 内存溢出与泄漏 概念
+ * https://www.jiangguo.net/c/rd1/lyy.html
+ *
+ *
+ * 参考链接
+ * https://cloud.tencent.com/developer/article/1912171
+ *
+ *
  * @author eren.liao
  * @date 2023/2/8 10:19
  */
