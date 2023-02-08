@@ -48,6 +48,7 @@
         <module>calculate</module>
         <module>netty</module>
         <module>designPattern</module>
+        <module>jvm</module>
     </modules>
 
     <!--配置参数，子类也可以用 -->
