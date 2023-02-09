@@ -18,6 +18,10 @@ package com.lzl.jvm;
  * 原文链接：https://blog.csdn.net/qq_34626094/article/details/117173323
  *
  *
+ *
+ *来自
+ *用JDK8的一定要配置：-Xms -Xmx -XX:MaxDirectMemorySize，【Xmx +（加） MaxDirectMemorySize】的值不能超过docker的最大内存，不然docker内存占满了会被oomkill掉；
+ * https://www.cnblogs.com/dengq/p/13687423.html
  * @author eren.liao
  * @date 2023/2/9 10:46
  */
