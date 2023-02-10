@@ -22,7 +22,16 @@ import java.util.List;
  * @date 2023/2/8 10:19
  */
 public class MemoryRecycleTest {
+
+
     static volatile List<OOMobject> list = new ArrayList<>();
+
+    /**
+     * vm options
+     *
+     * -Xms1024m -Xmx1024m -XX:+PrintGCDetails
+     * @param args
+     */
     public static void main(String[] args) {
         //指定要生产的对象大小为512M
         int count = 512;

@@ -1,5 +1,7 @@
 package com.lzl.jvm;
 
+import java.nio.ByteBuffer;
+
 /**
  * -XX:MaxDirectMemorySize（重点）
  * 内存不足时抛出OutOfMemoryError或OutOfMemoryError：Direct buffer memory。
@@ -30,11 +32,37 @@ public class MaxDirectMemorySizeTest {
     public static void main(String[] args) {
 
         // 得到的是byte
-        long l = Runtime.getRuntime().maxMemory();
+        // long l = Runtime.getRuntime().maxMemory();
         //1G=1024MB，1MB=1024KB，1KB=1024   1G = 1073741824字节
         // 1byte = 8bit
         //“1byte等于8bit。数据存储是以“字节”（Byte）为单位，数据传输大多是以“位”（bit）为单位，一个位就代表一个0或1（即二进制），每8个位（bit）组成一个字节（Byte），是最小一级的信息单位
-        System.out.println(l);
+        // System.out.println(l);
 
+
+        // 测试 fullgc
+        new Thread(() -> {
+            try {
+                for (; ;) {
+                    System.out.println("增加堆外内存");
+                    test();
+                    //休眠5秒
+                    Thread.sleep(5000);
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }).start();
     }
+
+    /**
+     * vm options
+     *
+     * -Xms1024m -Xmx1024m -XX:+PrintGCDetails -XX:MaxDirectMemorySize=64m
+     */
+    public static void test(){
+        // 12Mb
+        ByteBuffer.allocateDirect(12*1024*1024);
+        // System.out.println(Runtime.getRuntime().maxMemory());
+    }
+
 }
