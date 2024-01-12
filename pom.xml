@@ -50,6 +50,7 @@
         <module>designPattern</module>
         <module>jvm</module>
         <module>shade-apache-poi-5.2.3</module>
+        <module>pdf</module>
     </modules>
 
     <!--配置参数，子类也可以用 -->
