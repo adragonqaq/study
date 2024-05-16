@@ -237,8 +237,8 @@ public class Word3 {
 
         List<String> ratio = new ArrayList<>();
         ratio.add("1");
-        ratio.add("1");
-        ratio.add("1");
+        ratio.add("2");
+        ratio.add("3");
         Word3 wordUtil = new Word3(streamList, ratio);
         wordUtil.saveReportFile("C:\\Users\\shiji\\Desktop\\test\\a.docx", "C:\\Users\\shiji\\Desktop\\test\\", "统计", 1);
     }
